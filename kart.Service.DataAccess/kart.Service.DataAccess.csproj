@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\kart.Core.Dto\kart.Core.Dto.csproj" />
+    <ProjectReference Include="..\kart.Service.Domain\kart.Service.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
