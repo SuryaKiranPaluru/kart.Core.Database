@@ -39,6 +39,20 @@ namespace kart.Service.Buisness
         {
             _repository.AddProductToCart(product);
         }
-            
+
+        void IkartService.RemoveProductFromCart(int productId)
+        {
+            _repository.RemoveProductFromCart(productId);
+        }
+
+        void IkartService.ModifyProductInCart(int productid, int quantity)
+        {
+            _repository.ModifyProductInCart(productid, quantity);
+        }
+
+        IEnumerable<CartRequestModel> IkartService.ViewItemsInCart(int sessionId)
+        {
+            return _repository.ViewItemsInCart(sessionId);
+        }
     }
 }

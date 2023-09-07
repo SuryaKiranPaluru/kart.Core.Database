@@ -9,7 +9,10 @@ using System.Text;
 
 namespace kart.Service.Api.Controllers
 {
-    
+    [Route("api/[controller]")]
+    [ApiController]
+
+
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _config;

@@ -18,6 +18,12 @@ namespace kart.Service.DataAccess
         public IEnumerable<Product> GetAllProducts();
 
         public void AddProductToCart(CartRequestModel product);
+
+        public void RemoveProductFromCart(int productId);
+
+        public void ModifyProductInCart(int productid, int quantity);
+
+        public IEnumerable<CartRequestModel> ViewItemsInCart(int sessionId);
         
     }
 }

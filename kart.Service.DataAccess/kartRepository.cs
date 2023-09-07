@@ -1,5 +1,6 @@
 ﻿using kart.Core.Dto.RequestModel;
 using kart.Service.Domain.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace kart.Service.DataAccess
 
         IEnumerable<Product> IkartRepository.GetAllProducts()
         {
-            return _context.Products;
+            return _context.Products.Where(p => p.StockQuantity>0);
         }
 
         IEnumerable<Product> IkartRepository.GetProductsByTitle(string title)
@@ -47,6 +48,43 @@ namespace kart.Service.DataAccess
             });
 
             _context.SaveChanges();
+        }
+
+        void IkartRepository.RemoveProductFromCart(int productId)
+        {
+            var itemToRemove = _context.Carts.Where(r => r.ProductId == productId)
+                           .FirstOrDefault();
+
+            _context.Carts.Remove(itemToRemove);
+
+            _context.SaveChanges();
+        }
+
+        void IkartRepository.ModifyProductInCart(int productid, int quantity)
+        {
+            var itemToModify = _context.Carts.Where(r => r.ProductId == productid)
+                                .FirstOrDefault();
+
+            itemToModify.Quantity += quantity;
+
+            _context.SaveChanges();
+
+        }
+
+        IEnumerable<CartRequestModel> IkartRepository.ViewItemsInCart(int sessionId)
+        {
+            var res = (from c in _context.Carts
+                       where c.SessionId == sessionId
+                       select new
+                       {
+                           SessionId = sessionId,
+                           ProductId = c.ProductId,
+                           Quantity = c.Quantity,
+                           UserId = c.UserId
+                       });
+            return (IEnumerable<CartRequestModel>)res;
+            //            return (IEnumerable<CartRequestModel>)_context.Carts.Where(_c => _c.SessionId == sessionId);
+
         }
     }
 }
