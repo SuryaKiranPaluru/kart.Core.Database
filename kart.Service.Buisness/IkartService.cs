@@ -19,6 +19,12 @@ namespace kart.Service.Buisness
 
         public void ModifyProductInCart(int productid, int quantity);
 
-        public IEnumerable<CartRequestModel> ViewItemsInCart(int sessionId);
+        public CartResponseModel ViewItemsInCart(int sessionId);
+
+        public void AddNewProduct(ProductRequestModel product);
+
+        public void DeleteProduct(int productid);
+
+        public void ModifyProduct(int productid, string itemToModify, string value);
     }
 }

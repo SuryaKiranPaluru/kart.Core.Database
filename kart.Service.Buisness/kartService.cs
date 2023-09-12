@@ -50,9 +50,24 @@ namespace kart.Service.Buisness
             _repository.ModifyProductInCart(productid, quantity);
         }
 
-        IEnumerable<CartRequestModel> IkartService.ViewItemsInCart(int sessionId)
+        CartResponseModel IkartService.ViewItemsInCart(int sessionId)
         {
             return _repository.ViewItemsInCart(sessionId);
+        }
+
+        void IkartService.AddNewProduct(ProductRequestModel product)
+        {
+            _repository.AddNewProduct(product);
+        }
+
+        void IkartService.DeleteProduct(int productid)
+        {
+            _repository.DeleteProduct(productid);
+        }
+
+        void IkartService.ModifyProduct(int productid, string itemToModify, string value)
+        {
+            _repository.ModifyProduct(productid,itemToModify, value);
         }
     }
 }

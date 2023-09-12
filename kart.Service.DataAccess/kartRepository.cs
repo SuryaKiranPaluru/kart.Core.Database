@@ -1,4 +1,5 @@
 ﻿using kart.Core.Dto.RequestModel;
+using kart.Core.Dto.ResponseModel;
 using kart.Service.Domain.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
@@ -35,8 +36,6 @@ namespace kart.Service.DataAccess
                      
         }
 
-        
-
         public void AddProductToCart(CartRequestModel product)
         {
             _context.Carts.Add(new Cart
@@ -71,20 +70,104 @@ namespace kart.Service.DataAccess
 
         }
 
-        IEnumerable<CartRequestModel> IkartRepository.ViewItemsInCart(int sessionId)
+        CartResponseModel IkartRepository.ViewItemsInCart(int sessionId)
         {
-            var res = (from c in _context.Carts
-                       where c.SessionId == sessionId
-                       select new
-                       {
-                           SessionId = sessionId,
-                           ProductId = c.ProductId,
-                           Quantity = c.Quantity,
-                           UserId = c.UserId
-                       });
-            return (IEnumerable<CartRequestModel>)res;
-            //            return (IEnumerable<CartRequestModel>)_context.Carts.Where(_c => _c.SessionId == sessionId);
+            var cartItems = (from c in _context.Carts
+                             where c.SessionId == sessionId
+                             select c).ToList();
+            var cart = new CartResponseModel();
 
+            decimal totalAmount = (decimal)0.0;
+
+            foreach (Cart item in cartItems)
+            {
+
+                var price = (from p in _context.Products
+                             where item.ProductId == p.ProductId
+                             select p.Price).FirstOrDefault();
+
+                var discount = (from p in _context.Products
+                                where item.ProductId == p.ProductId
+                                select p.Discount).FirstOrDefault();
+
+                var sellingPrice = price - ((price * discount) / 100);
+
+
+
+                var _cartItemnew = new CartItemResponseModel
+                {
+                    ProductName = (from p in _context.Products
+                                   where item.ProductId == p.ProductId
+                                   select p.ProductName).FirstOrDefault(),
+
+                    Quantity = item.Quantity,
+
+                    Current_Price = sellingPrice
+                };
+
+                totalAmount += (decimal)(sellingPrice * item.Quantity);
+
+                cart.Items.Add(_cartItemnew);
+            }
+
+            cart.TotalAmount = totalAmount;
+            return cart;
         }
+
+        void IkartRepository.AddNewProduct(ProductRequestModel product)
+        {
+            _context.Products.Add(new Product
+            {
+                ProductName = product.ProductName,
+                ProductDesc = product.ProductDesc,
+                CategoryId = product.CategoryId,
+                StockQuantity = product.StockQuantity,
+                Discount = product.Discount,
+                Price = product.Price,
+                UserId = product.UserId
+            });
+
+            _context.SaveChanges();
+        }
+
+        void IkartRepository.DeleteProduct(int productid)
+        {
+            var itemToRemove = _context.Products.Where(r => r.ProductId == productid)
+                           .FirstOrDefault();
+
+            _context.Products.Remove(itemToRemove);
+
+            _context.SaveChanges();
+        }
+
+        void IkartRepository.ModifyProduct(int productid, string itemToModify, string value)
+        {
+            var item = _context.Products.Where(r => r.ProductId == productid)
+                                .FirstOrDefault();
+
+            switch (itemToModify.ToLower())
+            {
+                case "productname":
+                    item.ProductName = value; break;
+
+                case "product description":
+                    item.ProductDesc = value; break;
+
+                case "stockquantity":
+                    item.StockQuantity = int.Parse(value); break;
+
+                case "discount":
+                    item.Discount = int.Parse(value); break;
+
+                case "price":
+                    item.Price = decimal.Parse(value); break;
+            }
+
+            _context.SaveChanges();
+        }
+    
+        
+    
+    
     }
 }

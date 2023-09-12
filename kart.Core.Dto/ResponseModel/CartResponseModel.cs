@@ -6,15 +6,22 @@ using System.Threading.Tasks;
 
 namespace kart.Core.Dto.ResponseModel
 {
+
     public class CartResponseModel
-
     {
-        public int SessionId { get; set; }
+        public decimal TotalAmount { get; set; }
+        public List<CartItemResponseModel> Items { get; set; } = new List<CartItemResponseModel>();
 
-        public int ProductId { get; set; }
+    }
 
-        public int UserId { get; set; }
+    public class CartItemResponseModel
+    {
+        public string ProductName { get; set; } = null!;
 
         public int Quantity { get; set; }
+
+        public decimal? Current_Price { get; set; }
+
+
     }
 }
