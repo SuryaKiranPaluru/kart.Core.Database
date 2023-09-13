@@ -26,6 +26,7 @@ namespace kart.Service.Api.Controllers
 
         [HttpPost]
         [Route("PlaceOrder/")]
+        [Authorize(Roles = "Customer")]
 
         public IActionResult PlaceOrder([FromBody] OrderRequestModel order)
         {

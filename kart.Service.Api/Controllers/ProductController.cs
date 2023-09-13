@@ -1,12 +1,14 @@
 ﻿using FluentValidation;
 using kart.Core.Dto.RequestModel;
 using kart.Service.Buisness;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kart.Service.Api.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
+    [Authorize(Roles = "Seller")]
 
     public class ProductController : ControllerBase
     {
@@ -21,6 +23,7 @@ namespace kart.Service.Api.Controllers
 
         [HttpPost]
         [Route("AddNewProduct/")]
+        [Authorize(Roles = "Seller")]
 
         public IActionResult AddNewProduct([FromBody] ProductRequestModel product)
         {
@@ -40,6 +43,7 @@ namespace kart.Service.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteProduct/")]
+        [Authorize(Roles = "Seller")]
 
         public IActionResult DeleteProduct(int productId)
         {
@@ -49,6 +53,7 @@ namespace kart.Service.Api.Controllers
 
         [HttpPut]
         [Route("ModifyProduct/")]
+        [Authorize(Roles = "Seller")]
 
         public IActionResult ModifyProduct(int productId, string itemToModify, string value)
         {
