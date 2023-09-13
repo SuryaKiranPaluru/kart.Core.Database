@@ -17,7 +17,7 @@ public partial class Product
 
     public int Discount { get; set; }
 
-    public decimal? Price { get; set; }
+    public decimal Price { get; set; }
 
     public int? UserId { get; set; }
 

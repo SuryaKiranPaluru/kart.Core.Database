@@ -9,17 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6DB15EA1-6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{273A6315-E917-49E8-9F06-22BBCF42CC75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kart.Service.Domain", "kart.Service.Domain\kart.Service.Domain.csproj", "{148BBB21-E44F-4F85-AAF9-5115C65F239E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kart.Service.Domain", "kart.Service.Domain\kart.Service.Domain.csproj", "{148BBB21-E44F-4F85-AAF9-5115C65F239E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERDiagram", "ERDiagram\ERDiagram.csproj", "{9377104D-7060-4004-A0A5-3AE8ED6BD677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kart.Service.DataAccess", "kart.Service.DataAccess\kart.Service.DataAccess.csproj", "{AFA9EB68-4CD0-41E0-B728-2070CDD0336F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kart.Service.DataAccess", "kart.Service.DataAccess\kart.Service.DataAccess.csproj", "{AFA9EB68-4CD0-41E0-B728-2070CDD0336F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kart.Service.Buisness", "kart.Service.Buisness\kart.Service.Buisness.csproj", "{FFEC79DF-7003-4FA3-856D-B6C48182E5E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kart.Service.Buisness", "kart.Service.Buisness\kart.Service.Buisness.csproj", "{FFEC79DF-7003-4FA3-856D-B6C48182E5E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kart.Core.Dto", "kart.Core.Dto\kart.Core.Dto.csproj", "{80F18D66-D53C-4AA3-AC31-2DC78DE27159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kart.Core.Dto", "kart.Core.Dto\kart.Core.Dto.csproj", "{80F18D66-D53C-4AA3-AC31-2DC78DE27159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kart.Service.Api", "kart.Service.Api\kart.Service.Api.csproj", "{E7BDB358-3F40-4577-BA87-C5E0F11052C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kart.Service.Api", "kart.Service.Api\kart.Service.Api.csproj", "{E7BDB358-3F40-4577-BA87-C5E0F11052C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kart.Service.UnitTest", "kart.Service.UnitTest\kart.Service.UnitTest.csproj", "{71A90DCC-5636-4575-BD9A-249B5BDE4751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{E7BDB358-3F40-4577-BA87-C5E0F11052C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7BDB358-3F40-4577-BA87-C5E0F11052C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7BDB358-3F40-4577-BA87-C5E0F11052C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71A90DCC-5636-4575-BD9A-249B5BDE4751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A90DCC-5636-4575-BD9A-249B5BDE4751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A90DCC-5636-4575-BD9A-249B5BDE4751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A90DCC-5636-4575-BD9A-249B5BDE4751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{FFEC79DF-7003-4FA3-856D-B6C48182E5E1} = {273A6315-E917-49E8-9F06-22BBCF42CC75}
 		{80F18D66-D53C-4AA3-AC31-2DC78DE27159} = {6DB15EA1-6173-452A-AF86-AF02C0ED569A}
 		{E7BDB358-3F40-4577-BA87-C5E0F11052C7} = {273A6315-E917-49E8-9F06-22BBCF42CC75}
+		{71A90DCC-5636-4575-BD9A-249B5BDE4751} = {273A6315-E917-49E8-9F06-22BBCF42CC75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB516D8D-1164-482F-A565-3DED401B28F1}

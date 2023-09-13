@@ -53,8 +53,16 @@ builder.Services.AddDbContext<kartContext>(options => options.UseSqlServer(build
 
 
 //AddScoped is used for the lifetime of the request
-builder.Services.AddScoped<IkartService, kartService>();
-builder.Services.AddScoped<IkartRepository, kartRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ISearchService, SearchService>();
+builder.Services.AddScoped<ISearchRepository, SearchRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 
 

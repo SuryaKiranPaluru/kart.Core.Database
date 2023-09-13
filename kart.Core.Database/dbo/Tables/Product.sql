@@ -5,7 +5,7 @@
     [category_id]    INT             NOT NULL,
     [stock_quantity] INT             NOT NULL,
     [discount]       INT             NOT NULL,
-    [price]          DECIMAL (10, 2) NULL,
+    [price]          DECIMAL (10, 2) NOT NULL,
     [user_id]        INT             NULL,
     PRIMARY KEY CLUSTERED ([product_id] ASC),
     FOREIGN KEY ([category_id]) REFERENCES [dbo].[Category] ([category_id]),
