@@ -1,10 +1,11 @@
+using FluentValidation;
 using kart.Core.Dto.RequestModel;
 using kart.Service.Api.Controllers;
 using kart.Service.Buisness;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace kart.Service.UnitTest
+namespace kart.Service.UnitTest.ControllerTest
 {
     [TestClass]
     public class ProductControllerTest
@@ -12,11 +13,12 @@ namespace kart.Service.UnitTest
 
         public ProductController productController;
         public Mock<IProductService> mockProductService;
+        public IValidator<ProductRequestModel> validator;
 
         public ProductControllerTest()
         {
             mockProductService = new Mock<IProductService>();
-            productController = new ProductController(mockProductService.Object);
+            productController = new ProductController(mockProductService.Object, validator);
 
         }
 
@@ -36,8 +38,8 @@ namespace kart.Service.UnitTest
 
             mockProductService.Setup(x => x.AddNewProduct(productRequestModel));
             var result = productController.AddNewProduct(productRequestModel);
-            var actual = result as OkObjectResult;
-            Assert.AreEqual(200, actual.StatusCode);
+            var actual = result as BadRequestObjectResult;
+            Assert.AreEqual(400, actual.StatusCode);
         }
 
         [TestMethod]
@@ -47,7 +49,7 @@ namespace kart.Service.UnitTest
             string itemToModify = "Prod Name";
             string value = "changed name";
 
-            mockProductService.Setup(x => x.ModifyProduct(prodId,itemToModify,value));
+            mockProductService.Setup(x => x.ModifyProduct(prodId, itemToModify, value));
             var result = productController.ModifyProduct(prodId, itemToModify, value);
             var actual = result as OkObjectResult;
             Assert.AreEqual(200, actual.StatusCode);

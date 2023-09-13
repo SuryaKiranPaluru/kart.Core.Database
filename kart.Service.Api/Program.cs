@@ -1,3 +1,6 @@
+using FluentValidation;
+using kart.Core.Dto.RequestModel;
+using kart.Service.Api.Validators;
 using kart.Service.Buisness;
 using kart.Service.DataAccess;
 using kart.Service.Domain.Models;
@@ -63,6 +66,10 @@ builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<ISearchRepository, SearchRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+builder.Services.AddScoped<IValidator<ProductRequestModel>, ProductRequestModelValidator>();
+builder.Services.AddScoped<IValidator<OrderRequestModel>, OrderRequestModelValidator>();
+builder.Services.AddScoped<IValidator<CartRequestModel>, CartRequestModelValidator>();
 
 
 

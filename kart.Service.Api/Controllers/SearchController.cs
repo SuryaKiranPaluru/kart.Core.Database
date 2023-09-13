@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace kart.Service.Api.Controllers
 {
+    [ApiController]
+    [Route("/api/[controller]")]
     public class SearchController : ControllerBase
     {
         private readonly ISearchService _service;
